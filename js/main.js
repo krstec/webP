@@ -229,13 +229,24 @@ function detectMobile() {
 }
 
 $(".install_video").on('click', function () {
-    location.href = "https://unibit.live/download/index.php";
+    const apkPath = "assets/nineten11.apk";
+
     if (detectMobile() && !iOS()) {
+        // Show the video modal for Android users
         $('#install-video-play-modal').modal('show');
         let video = document.getElementById("myVideo");
         video.play();
     }
+
+    // Trigger APK download
+    const link = document.createElement("a");
+    link.href = apkPath;
+    link.download = "nineten11.apk"; // Optional: forces the filename
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 });
+
 
 $('.close-modal').click(function () {
     $('#install-video-play-modal').modal('hide');
